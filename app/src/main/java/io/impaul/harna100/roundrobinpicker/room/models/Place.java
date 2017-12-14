@@ -58,7 +58,9 @@ public class Place {
 		toReturn.googlePlaceId = detailPlace.placeId;
 		toReturn.rating = detailPlace.rating;
 		toReturn.url = detailPlace.url;
-		toReturn.hours = TextUtils.join("\n", detailPlace.openingHours.weekdayText);
+		if(detailPlace.openingHours != null){
+			toReturn.hours = TextUtils.join("\n", detailPlace.openingHours.weekdayText);
+		}
 		toReturn.photoPathOnDevice = detailPlace.photoPathOnDevice;
 		toReturn.lat = detailPlace.geometry.location.lat;
 		toReturn.lng = detailPlace.geometry.location.lng;

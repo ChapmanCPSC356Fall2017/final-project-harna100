@@ -207,7 +207,7 @@ public class PlaceUtil {
 			List<DetailPlace> toReturn = Arrays.asList(detailPlaces);
 
 			for (DetailPlace detailPlace : toReturn) {
-				if(detailPlace.photos.length == 0){
+				if(detailPlace.photos != null && detailPlace.photos.length == 0){
 					continue;
 				}
 				String photoReference = detailPlace.photos[0].photoReference;

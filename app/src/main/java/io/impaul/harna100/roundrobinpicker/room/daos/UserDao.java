@@ -30,6 +30,9 @@ public interface UserDao {
 	@Query("SELECT COUNT(*) FROM users WHERE username=:usernameToCheck")
 	int userExists(String usernameToCheck);
 
+	@Query("SELECT * FROM users WHERE id=:userId")
+	User findOneById(int userId);
+
 	@Insert
 	long[] insertAll(User... users);
 
