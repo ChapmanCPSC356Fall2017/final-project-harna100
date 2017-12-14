@@ -89,8 +89,7 @@ public class LoginActivity extends AppCompatActivity{
 		User user = new User();
 		user.setEmail("paul@ex.com");
 		user.setPassword("paul");
-		user.setFirstName("Paul");
-		user.setLastName("Harnack");
+		user.setName("Paul Harnack");
 		RoomSingleton.GetDb(getApplicationContext()).userDao().insertAll(user);
 	}
 	private void createDummyPlaces(){

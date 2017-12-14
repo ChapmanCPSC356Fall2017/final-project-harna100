@@ -18,11 +18,17 @@ public interface UserDao {
 	@Query("SELECT * FROM users WHERE id IN (:userIds)")
 	List<User> loadAllByIds(int[] userIds);
 
-	@Query("SELECT * FROM users WHERE first_name LIKE :first AND last_name LIKE :last LIMIT 1")
-	User findByName(String first, String last);
+	@Query("SELECT * FROM users WHERE name LIKE :nameToSearch LIMIT 1")
+	User findByName(String nameToSearch);
 
 	@Query("SELECT * FROM users WHERE email=:emailToAuth AND password=:passwordToAuth")
 	User authUser(String emailToAuth, String passwordToAuth);
+
+	@Query("SELECT COUNT(*) FROM users WHERE email=:emailToCheck")
+	int emailExists(String emailToCheck);
+
+	@Query("SELECT COUNT(*) FROM users WHERE username=:usernameToCheck")
+	int userExists(String usernameToCheck);
 
 	@Insert
 	long[] insertAll(User... users);

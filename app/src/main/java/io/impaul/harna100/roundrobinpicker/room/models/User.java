@@ -7,20 +7,19 @@ import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "users",
 	indices = {
-		@Index(value = {"email"}, unique = true)
+		@Index(value = {"email"}, unique = true),
+		@Index(value = {"username"}, unique = true)
 	}
 )
 public class User {
 	@PrimaryKey(autoGenerate = true)
 	private int id;
 
-	@ColumnInfo(name = "first_name")
-	private String firstName;
-
-	@ColumnInfo(name = "last_name")
-	private String lastName;
+	private String name;
 
 	private String email;
+
+	private String username;
 
 	private String password;
 
@@ -32,20 +31,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {
@@ -64,12 +55,19 @@ public class User {
 		this.password = password;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	@Override
 	public String toString() {
 		return "User{" +
 				"id=" + id +
-				", firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
+				", name='" + name + '\'' +
 				", email='" + email + '\'' +
 				", password='" + password + '\'' +
 				'}';
