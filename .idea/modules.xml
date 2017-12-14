@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/RoundRobinPicker.iml" filepath="$PROJECT_DIR$/RoundRobinPicker.iml" />
       <module fileurl="file://C:\Users\Paul\Desktop\final-project-harna100\RoundRobinPicker.iml" filepath="C:\Users\Paul\Desktop\final-project-harna100\RoundRobinPicker.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://C:\Users\Paul\Desktop\final-project-harna100\app\app.iml" filepath="C:\Users\Paul\Desktop\final-project-harna100\app\app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/final-project-harna100.iml" filepath="$PROJECT_DIR$/final-project-harna100.iml" />
+      <module fileurl="file://C:\Users\Paul\Desktop\androidProjects\RoundRobinPicker\final-project-harna100.iml" filepath="C:\Users\Paul\Desktop\androidProjects\RoundRobinPicker\final-project-harna100.iml" />
     </modules>
   </component>
 </project>
