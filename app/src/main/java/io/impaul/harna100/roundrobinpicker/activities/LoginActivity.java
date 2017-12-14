@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity{
 
 	private void fillFields() {
 		tv_email.setText("paul@ex.com", true);
-		et_password.setText("paul");
+		et_password.setText("1234");
 	}
 
 	private void getReferences(){
