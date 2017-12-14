@@ -1,5 +1,6 @@
 package io.impaul.harna100.roundrobinpicker.activities;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import io.impaul.harna100.roundrobinpicker.R;
+import io.impaul.harna100.roundrobinpicker.SharedPrefSingleton;
 import io.impaul.harna100.roundrobinpicker.room.RoomSingleton;
 import io.impaul.harna100.roundrobinpicker.room.models.User;
 
@@ -85,7 +87,9 @@ public class SignupActivity extends AppCompatActivity {
 		}
 
 		saveUser();
+		login();
 	}
+
 
 	private boolean usernameExists() {
 		int userNameCount = RoomSingleton.GetDb(this).userDao().userExists(et_username.getText().toString());
@@ -199,6 +203,14 @@ public class SignupActivity extends AppCompatActivity {
 		user.setPassword(et_password.getText().toString());
 		RoomSingleton.GetDb(this).userDao().insertAll(user);
 		Log.d(TAG, "saveUser: User Saved");
+	}
+
+
+	private void login() {
+		User user = RoomSingleton.GetDb(this).userDao().authUser(et_email.getText().toString(), et_password.getText().toString());
+		SharedPrefSingleton.SetUserId(this, user.getId());
+		startActivity(new Intent(this, PlaceSelectionActivity.class));
+		finish();
 	}
 
 	private class SignupTask extends AsyncTask<Void, Void, Void>{
