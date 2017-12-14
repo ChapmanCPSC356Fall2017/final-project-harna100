@@ -49,6 +49,7 @@ public class LoginActivity extends AppCompatActivity{
 	private View pv_progress;
 	private View v_loginForm;
 	private Button btn_signin;
+	private Button btn_signup;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,10 +73,21 @@ public class LoginActivity extends AppCompatActivity{
 		btn_signin = findViewById(R.id.email_sign_in_button);
 		v_loginForm = findViewById(R.id.login_form);
 		pv_progress = findViewById(R.id.login_progress);
+		btn_signup = findViewById(R.id.btn_signup);
 	}
 	private void setListeners() {
 		setLoginButtonListener();
 		setEditorActionListener();
+		setSignupButtonListener();
+	}
+
+	private void setSignupButtonListener() {
+		btn_signup.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+			}
+		});
 	}
 
 	private void setEditorActionListener() {
