@@ -25,8 +25,9 @@ public class NavListAdapter extends RecyclerView.Adapter<NavListAdapter.NavViewH
 	public NavListAdapter() {
 		navItems = new ArrayList<>();
 		navItems.add(new NavItemModel("Home", R.drawable.ic_home, FragmentTypes.HOME_FRAGMENT));
-		navItems.add(new NavItemModel("Groups", R.drawable.ic_people, FragmentTypes.HOME_FRAGMENT));
-		navItems.add(new NavItemModel("Events", R.drawable.ic_dates, FragmentTypes.HOME_FRAGMENT));
+//		navItems.add(new NavItemModel("Groups", R.drawable.ic_people, FragmentTypes.HOME_FRAGMENT));
+//		navItems.add(new NavItemModel("Events", R.drawable.ic_dates, FragmentTypes.HOME_FRAGMENT));
+		navItems.add(new NavItemModel("Logout", R.drawable.ic_logout, FragmentTypes.LOGOUT));
 	}
 
 	@Override

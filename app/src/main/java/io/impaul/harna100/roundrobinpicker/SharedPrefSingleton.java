@@ -42,4 +42,8 @@ public class SharedPrefSingleton {
 		}
 
 	}
+
+	public static void Logout(Context context) {
+		GetSharedPreferences(context).edit().remove("user_id").apply();
+	}
 }

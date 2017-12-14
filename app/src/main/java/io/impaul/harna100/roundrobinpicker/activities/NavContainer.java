@@ -1,11 +1,13 @@
 package io.impaul.harna100.roundrobinpicker.activities;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 
 import io.impaul.harna100.roundrobinpicker.R;
+import io.impaul.harna100.roundrobinpicker.SharedPrefSingleton;
 import io.impaul.harna100.roundrobinpicker.fragments.HomeFragment;
 import io.impaul.harna100.roundrobinpicker.fragments.MyFragment;
 import io.impaul.harna100.roundrobinpicker.interfaces.NavContainerInterface;
@@ -30,6 +32,11 @@ public abstract class NavContainer extends AppCompatActivity implements NavConta
 		switch(fragment){
 			case HOME_FRAGMENT:
 				setFragment(HomeFragment.NewInstance(), true);
+				break;
+			case LOGOUT:
+				SharedPrefSingleton.Logout(this);
+				startActivity(new Intent(this, LoginActivity.class));
+				finish();
 				break;
 			default:
 				break;

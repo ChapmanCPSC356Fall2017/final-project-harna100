@@ -156,7 +156,7 @@ public class LoginActivity extends AppCompatActivity{
 				btn_signin.setEnabled(true);
 			}
 			else{
-				Intent intent = new Intent(getBaseContext(), PlaceSelectionActivity.class);
+				Intent intent = new Intent(getBaseContext(), MainActivity.class);
 				SharedPrefSingleton.SetUserId(getBaseContext(), returnedUser.getId());
 				startActivity(intent);
 				finish();
