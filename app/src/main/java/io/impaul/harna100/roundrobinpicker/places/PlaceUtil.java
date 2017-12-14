@@ -30,6 +30,7 @@ import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 import okio.BufferedSink;
 import okio.Okio;
 
@@ -179,7 +180,15 @@ public class PlaceUtil {
 
 					JsonAdapter<DetailRaw> jsonAdapter = GetJsonAdapter(DetailRaw.class);
 					try {
-						toReturn.add(jsonAdapter.fromJson(response.body().source()).result);
+						if(response == null){
+							continue;
+						}
+						ResponseBody rb = response.body();
+						if(rb == null){
+							continue;
+						}
+
+						toReturn.add(jsonAdapter.fromJson(rb.source()).result);
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
