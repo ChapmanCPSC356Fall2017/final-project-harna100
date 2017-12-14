@@ -55,6 +55,10 @@ public class LoginActivity extends AppCompatActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		if(SharedPrefSingleton.GetUserId(this) != -1){
+			startActivity(new Intent(this, MainActivity.class));
+			finish();
+		}
 		getReferences();
 		setListeners();
 		fillFields();
