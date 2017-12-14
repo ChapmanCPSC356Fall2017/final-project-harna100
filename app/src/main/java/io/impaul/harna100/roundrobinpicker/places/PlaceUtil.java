@@ -1,5 +1,6 @@
 package io.impaul.harna100.roundrobinpicker.places;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+import io.impaul.harna100.roundrobinpicker.activities.LoginActivity;
+import io.impaul.harna100.roundrobinpicker.activities.SplashScreenActivity;
 import io.impaul.harna100.roundrobinpicker.places.models.DetailPlace;
 import io.impaul.harna100.roundrobinpicker.places.models.DetailRaw;
 import io.impaul.harna100.roundrobinpicker.places.models.NearbyRaw;
@@ -48,8 +51,8 @@ public class PlaceUtil {
 		return null;
 	}
 
-	public NearbyRawTask getNearbyRaw(String distance, String locationInLatLng, View progressbar){
-		return new NearbyRawTask(distance, locationInLatLng, progressbar);
+	public NearbyRawTask getNearbyRaw(String distance, String locationInLatLng, View progressbar, SplashScreenActivity splashScreenActivity){
+		return new NearbyRawTask(distance, locationInLatLng, progressbar, splashScreenActivity);
 	}
 
 	protected String GetNearbyUrl(String distance, String locationInLatLng){
@@ -106,11 +109,13 @@ public class PlaceUtil {
 		private View progressbar;
 		private String distance;
 		private String locationInLatLng;
+		private SplashScreenActivity splashScreenActivity;
 
-		public NearbyRawTask(String distance, String locationInLatLng, View progressbar) {
+		public NearbyRawTask(String distance, String locationInLatLng, View progressbar, SplashScreenActivity splashScreenActivity) {
 			this.distance = distance;
 			this.locationInLatLng = locationInLatLng;
 			this.progressbar = progressbar;
+			this.splashScreenActivity = splashScreenActivity;
 		}
 
 		@Override
@@ -149,15 +154,16 @@ public class PlaceUtil {
 				Log.e(TAG, "onPostExecute: ", new Exception("NearbyRaw was null"));
 				return;
 			}
-			new NearbyDetailTask(this.progressbar).execute(nearbyRaw.toArray(new NearbyRaw[nearbyRaw.size()]));
+			new NearbyDetailTask(this.progressbar, this.splashScreenActivity).execute(nearbyRaw.toArray(new NearbyRaw[nearbyRaw.size()]));
 		}
 	}
 	public class NearbyDetailTask extends AsyncTask<NearbyRaw, Void, List<DetailPlace>>{
 
 		private View progressbar;
-
-		public NearbyDetailTask(View progressbar) {
+		private SplashScreenActivity splashScreenActivity;
+		public NearbyDetailTask(View progressbar, SplashScreenActivity splashScreenActivity) {
 			this.progressbar = progressbar;
+			this.splashScreenActivity = splashScreenActivity;
 		}
 
 		@Override
@@ -184,15 +190,16 @@ public class PlaceUtil {
 
 		@Override
 		protected void onPostExecute(List<DetailPlace> detailPlaces) {
-			new GetPhotosTask(this.progressbar).execute(detailPlaces.toArray(new DetailPlace[detailPlaces.size()]));
+			new GetPhotosTask(this.progressbar, this.splashScreenActivity).execute(detailPlaces.toArray(new DetailPlace[detailPlaces.size()]));
 		}
 	}
 
 	public class GetPhotosTask extends AsyncTask<DetailPlace, Void, List<DetailPlace>>{
 		View progressBar;
-
-		public GetPhotosTask(View progressBar) {
+		private SplashScreenActivity splashScreenActivity;
+		public GetPhotosTask(View progressBar, SplashScreenActivity splashScreenActivity) {
 			this.progressBar = progressBar;
+			this.splashScreenActivity = splashScreenActivity;
 		}
 
 		@Override
@@ -230,16 +237,18 @@ public class PlaceUtil {
 
 		@Override
 		protected void onPostExecute(List<DetailPlace> detailPlaces) {
-			new AddToDbTask(this.progressBar).execute(detailPlaces.toArray(new DetailPlace[detailPlaces.size()]));
+			new AddToDbTask(this.progressBar, this.splashScreenActivity).execute(detailPlaces.toArray(new DetailPlace[detailPlaces.size()]));
 		}
 	}
 
 	public class AddToDbTask extends AsyncTask<DetailPlace, Void, Void> {
 
 		private View progressBar;
+		private SplashScreenActivity splashScreenActivity;
 
-		public AddToDbTask(View progressBar) {
+		public AddToDbTask(View progressBar, SplashScreenActivity splashScreenActivity) {
 			this.progressBar = progressBar;
+			this.splashScreenActivity = splashScreenActivity;
 		}
 
 		@Override
@@ -253,6 +262,8 @@ public class PlaceUtil {
 		@Override
 		protected void onPostExecute(Void aVoid) {
 			progressBar.setVisibility(View.GONE);
+			splashScreenActivity.startActivity(new Intent(splashScreenActivity, LoginActivity.class));
+			splashScreenActivity.finish();
 		}
 	}
 

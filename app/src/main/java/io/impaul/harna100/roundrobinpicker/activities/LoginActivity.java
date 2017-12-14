@@ -58,53 +58,12 @@ public class LoginActivity extends AppCompatActivity{
 		setListeners();
 		fillFields();
 
-
-
-		if(SharedPrefSingleton.isFirstRun(this)){
-			Log.d(TAG, "onCreate: Is first run");
-			createDummyUser();
-			getPlaces();
-		}
-
 	}
 
-	private void getPlaces() {
-		PlaceUtil placeUtil = new PlaceUtil("AIzaSyDyAAkQUZ5RJ08ui7xKCHL9b1jxF_l8j9w");
-		placeUtil.getNearbyRaw("1000", "33.793339,-117.852069", pv_progress).execute();
-	}
-
-	private void nukeAll() {
-		RoomSingleton.GetDb(this).userPlacesDao().nukeTable();
-		RoomSingleton.GetDb(this).userDao().nukeTable();
-		RoomSingleton.GetDb(this).placeDao().nukeTable();
-
-	}
 
 	private void fillFields() {
 		tv_email.setText("paul@ex.com", true);
 		et_password.setText("paul");
-	}
-
-	private void createDummyUser(){
-		User user = new User();
-		user.setEmail("paul@ex.com");
-		user.setPassword("paul");
-		user.setName("Paul Harnack");
-		RoomSingleton.GetDb(getApplicationContext()).userDao().insertAll(user);
-	}
-	private void createDummyPlaces(){
-		List<PlaceModel> places = new ArrayList<>();
-		places.add(new PlaceModel("Place 5", "This is a description of place 5", "https://www.nationalgeographic.com/content/dam/animals/thumbs/rights-exempt/mammals/d/domestic-dog_thumb.jpg", new LatLng(42.306190, -83.714033), "Address 123 St. Orange CA 29866"));
-		places.add(new PlaceModel("Place 1", "This is a description of place 1", "https://b.zmtcdn.com/data/reviews_photos/e64/738e59a141f1a89a732e791d12546e64_1446414326.jpg", new LatLng(42.306190, -83.714033), "Address 123 St. Orange CA 29866"));
-		places.add(new PlaceModel("Place 2", "This is a description of place 2", "https://b.zmtcdn.com/data/reviews_photos/e64/738e59a141f1a89a732e791d12546e64_1446414326.jpg", new LatLng(42.306190, -83.714033), "Address 123 St. Orange CA 29866"));
-		places.add(new PlaceModel("Place 3", "This is a description of place 3", "https://b.zmtcdn.com/data/reviews_photos/e64/738e59a141f1a89a732e791d12546e64_1446414326.jpg", new LatLng(42.306190, -83.714033), "Address 123 St. Orange CA 29866"));
-		places.add(new PlaceModel("Place 4", "This is a description of place 4", "https://b.zmtcdn.com/data/reviews_photos/e64/738e59a141f1a89a732e791d12546e64_1446414326.jpg", new LatLng(42.306190, -83.714033), "Address 123 St. Orange CA 29866"));
-		List<Place> toInsert = new ArrayList<>();
-		for (PlaceModel place : places) {
-			Place p = Place.NewPlace(place);
-			toInsert.add(p);
-		}
-		RoomSingleton.GetDb(this).placeDao().insertPlaces(toInsert.toArray(new Place[toInsert.size()]));
 	}
 
 	private void getReferences(){
