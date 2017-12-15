@@ -2,6 +2,7 @@ package io.impaul.harna100.roundrobinpicker.adapters;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -124,6 +125,12 @@ public class PlaceReviewListAdapter extends RecyclerView.Adapter<PlaceReviewList
 			switch (menuItem.getItemId()){
 				case R.id.menu_share:
 					Log.d(TAG, "onMenuItemClick: Shared Pressed");
+					Intent intent = new Intent();
+					intent.setAction(Intent.ACTION_SEND);
+					intent.setType("text/plain");
+					String shareMessage = "Let's eat at " + place.getName() + "!\n" + place.getAddress() + "\n" + place.getUrl();
+					intent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+					activityContext.startActivity(intent);
 					return true;
 				case R.id.menu_card_delete:
 					Log.d(TAG, "onMenuItemClick: Delete Pressed");
