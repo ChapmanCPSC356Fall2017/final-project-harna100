@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 
 import io.impaul.harna100.roundrobinpicker.R;
 import io.impaul.harna100.roundrobinpicker.fragments.HomeFragment;
+import io.impaul.harna100.roundrobinpicker.fragments.PlacesFragment;
 import io.impaul.harna100.roundrobinpicker.interfaces.NavContainerInterface;
 
 public class MainActivity extends NavContainer implements NavContainerInterface {
@@ -36,9 +37,8 @@ public class MainActivity extends NavContainer implements NavContainerInterface 
 		setupToolBar();
 		setListeners();
 
-		setFragment(HomeFragment.NewInstance(), false);
+		setFragment(PlacesFragment.NewInstance(), false);
 
-		dl_drawer.openDrawer(Gravity.START);
 	}
 
 

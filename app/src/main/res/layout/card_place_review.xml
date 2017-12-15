@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    xmlns:tools="http://schemas.android.com/tools"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginEnd="20dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+        <LinearLayout
+            android:id="@+id/ll_cardReviewWrapper"
+            android:layout_toStartOf="@id/ib_cardPlaceReviewMenu"
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/tv_cardPlaceReviewName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="The Place"
+                android:gravity="center_horizontal"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                app:autoSizeMaxTextSize="24sp"
+                app:autoSizeMinTextSize="18sp"
+                app:autoSizeTextType="uniform"
+                android:maxLines="2"
+                android:textSize="24sp"
+                android:paddingBottom="5dp"/>
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/ib_cardPlaceReviewMenu"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="#00FFFFFF"
+            android:src="@drawable/ic_menu_option"/>
+
+        <ImageView
+            android:layout_below="@id/ll_cardReviewWrapper"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/iv_cardPlaceReviewPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:minHeight="150dp"
+            tools:src="@drawable/common_full_open_on_phone"/>
+
+        <TextView
+            android:layout_below="@id/iv_cardPlaceReviewPhoto"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/tv_cardPlaceReviewAddress"
+            android:layout_width="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:layout_margin="5dp"
+            app:autoSizeTextType="uniform"
+            android:layout_height="wrap_content"
+            tools:text="1 University Dr, Orange, CA 92866 USA"/>
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

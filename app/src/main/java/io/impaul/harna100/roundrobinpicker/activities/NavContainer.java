@@ -2,8 +2,6 @@ package io.impaul.harna100.roundrobinpicker.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -13,12 +11,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import io.impaul.harna100.roundrobinpicker.R;
 import io.impaul.harna100.roundrobinpicker.SharedPrefSingleton;
 import io.impaul.harna100.roundrobinpicker.adapters.NavListAdapter;
 import io.impaul.harna100.roundrobinpicker.fragments.HomeFragment;
 import io.impaul.harna100.roundrobinpicker.fragments.MyFragment;
+import io.impaul.harna100.roundrobinpicker.fragments.PlacesFragment;
 import io.impaul.harna100.roundrobinpicker.interfaces.NavContainerInterface;
 import io.impaul.harna100.roundrobinpicker.models.FragmentTypes;
 import io.impaul.harna100.roundrobinpicker.room.RoomSingleton;
@@ -34,6 +34,7 @@ public abstract class NavContainer extends AppCompatActivity implements NavConta
 	protected DrawerLayout dl_drawer;
 	protected RecyclerView rv_navList;
 	protected User currUser;
+	protected FragmentTypes currFragment = FragmentTypes.PLACES_FRAGMENT;
 
 	protected void getReferences(){
 		nv_navBar = findViewById(R.id.nv_navBar);
@@ -76,9 +77,18 @@ public abstract class NavContainer extends AppCompatActivity implements NavConta
 
 	@Override
 	public void changeFragment(FragmentTypes fragment) {
+		if(fragment == currFragment){
+			return;
+		}
+		currFragment = fragment;
 		switch(fragment){
 			case HOME_FRAGMENT:
-				setFragment(HomeFragment.NewInstance(), true);
+//				setFragment(HomeFragment.NewInstance(), true);
+				Toast.makeText(this, "Home Screen Not Implemented", Toast.LENGTH_SHORT).show();
+				currFragment = FragmentTypes.PLACES_FRAGMENT;
+				break;
+			case PLACES_FRAGMENT:
+				setFragment(PlacesFragment.NewInstance(), true);
 				break;
 			case LOGOUT:
 				SharedPrefSingleton.Logout(this);

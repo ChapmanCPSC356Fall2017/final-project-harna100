@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.impaul.harna100.roundrobinpicker.R;
-import io.impaul.harna100.roundrobinpicker.activities.NavContainer;
 import io.impaul.harna100.roundrobinpicker.interfaces.NavContainerInterface;
 import io.impaul.harna100.roundrobinpicker.models.FragmentTypes;
 import io.impaul.harna100.roundrobinpicker.models.NavItemModel;
@@ -27,6 +26,7 @@ public class NavListAdapter extends RecyclerView.Adapter<NavListAdapter.NavViewH
 		navItems.add(new NavItemModel("Home", R.drawable.ic_home, FragmentTypes.HOME_FRAGMENT));
 //		navItems.add(new NavItemModel("Groups", R.drawable.ic_people, FragmentTypes.HOME_FRAGMENT));
 //		navItems.add(new NavItemModel("Events", R.drawable.ic_dates, FragmentTypes.HOME_FRAGMENT));
+		navItems.add(new NavItemModel("Places", R.drawable.ic_places, FragmentTypes.PLACES_FRAGMENT));
 		navItems.add(new NavItemModel("Logout", R.drawable.ic_logout, FragmentTypes.LOGOUT));
 	}
 
