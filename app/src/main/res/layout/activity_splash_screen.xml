@@ -5,7 +5,7 @@
               android:layout_height="match_parent"
               android:gravity="center"
               android:fitsSystemWindows="true"
-              android:background="@color/colorPrimary">
+              android:background="@drawable/splash_screen_gradient">
 
     <ProgressBar
         android:id="@+id/pb_progress"
